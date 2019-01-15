@@ -1,0 +1,64 @@
+{extend name="default/index"}
+
+{block name="content"}
+              <!-- Deafult Table -->
+              <form action="/admin/user_index" method="get">
+                    <input type="text" class="main-search" name="uname" >
+                     <select name="status" class="main-search" >
+                            <option value="1">超级管理员</option>
+                            <option value="2">普通管理员</option>
+                            <option value="3">一般用户</option>
+                     </select>
+                       <input type="submit" class="btn btn-lg m-r-5" value="查询" >
+              </form>
+              
+                <div class="block-area" id="defaultStyle">
+                    <h3 class="block-title">用户列表</h3>
+                    <table class="table tile">
+                        <thead>
+                            <tr>
+                                <th>排序</th>
+                                <th>用户名</th>
+                                <th>手机号</th>
+                                <th>邮箱号</th>
+                                <th>权限</th>
+                                <th>添加时间</th>
+                                <th>状态</th>
+                                <th>状态操作</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {foreach $data as $v}
+                            <tr>
+                                <td>{$v->uid}</td>
+                                <td>{$v->uname}</td>
+                                <td>{$v.phone} </td>
+                                <td>{$v.email} </td>
+                                <td>
+                                    {if $v->status==1}
+                                    超级管理员
+                                    {elseif $v->status==2}
+                                    普通管理员
+                                    {elseif $v->status==3}
+                                    一般用户
+                                    {/if}
+                                </td>
+                                <td>{$v['create_time']}</td>
+                                <td>{if $v->zt==1}
+                                    启用
+                                    {elseif $v->zt==2}
+                                    禁用
+                                    {/if}
+                                </td>
+                                <td><a href="/admin/user_start/{$v->uid}">启用</a>||<a href="/admin/user_stop/{$v->uid}">禁用</a></td>
+                                <td><a href="/admin/user_updatepwd/{$v->uid}">修改密码</a>||<a href="/admin/user_edit/{$v->uid}">修改</a>|| <a href="/admin/user_delete/{$v->uid}">删除</a></td>
+
+                            </tr>
+                            {/foreach}
+                          
+                        </tbody>
+                    </table>
+                  {:$data->render()}
+                </div>
+{/block}

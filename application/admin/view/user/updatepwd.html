@@ -1,0 +1,32 @@
+{extend name="default/index"}
+
+{block name="content"}
+         <!-- Basic with panel-->
+                <div class="block-area" id="basic">
+                   <div class="tile p-15">
+                        <form role="form" method="post" action="/admin/user_reupdatepwd/{$data->uid}">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">原密码</label>
+                                <input type="text" name="ypwd" class="form-control input-sm" id="exampleInputEmail1" >     
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">新密码</label>
+                                <input type="text" name="pwd" class="form-control input-sm" id="exampleInputEmail1" >     
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">确认密码</label>
+                                <input type="text" name="repwd" class="form-control input-sm" id="exampleInputEmail1" >     
+                            </div>
+                          
+                            
+                            
+                            <!-- <botton type="submit" class="btn btn-sm m-t-10">注册</botton> -->
+                            <button type="submit" class="btn btn-sm m-t-10">保存</button>
+                           
+                            
+                        </form>
+                    </div>
+                </div>
+{/block}

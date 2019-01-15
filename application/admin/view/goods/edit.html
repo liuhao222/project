@@ -1,0 +1,54 @@
+{extend name="default/index"}
+{block name="content"}
+     <!-- Basic with panel-->
+                <div class="block-area" id="basic">
+                   <div class="tile p-15">
+                        <form role="form" method="post" action="/admin/goods_update/{$data->id}" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">商品名</label>
+                                <input type="text" name="name" value="{$data->name}" class="form-control input-sm" id="exampleInputEmail1" >  
+                            </div>
+                            
+                            <div class="form-group">
+                                 <label for="exampleInputPassword1">价格</label>
+                                <input type="text" name="price" value="{$data->price}" class="form-control input-sm" id="exampleInputPassword1">
+                            </div>
+
+                            <div class="form-group">
+                                 <label for="exampleInputPassword1">图片</label>
+                                <td><img src="/photo/{$data->pic}" alt=""> 
+                                    <input type="file" name="pic" class="form-control input-sm" id="exampleInputPassword1">
+                                </td>
+                            </div>
+
+                            <div class="form-group">
+                                 <label for="exampleInputPassword1">父类</label>
+                               <input type="text" name="type_id" value="{$data->type_id}" class="form-control input-sm" id="exampleInputPassword1">
+                            </div>
+
+                            <div class="form-group">
+                                 <label for="exampleInputPassword1">状态</label>
+                                <select name="status" class="main-search">
+                                    <option {if $data->status ==1}selected{/if} value="1">新品</option>
+                                    <option {if $data->status ==2}selected{/if} value="2">上架</option>
+                                    <option {if $data->status ==3}selected{/if} value="3">下架</option>
+
+                                    
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                 <label for="exampleInputPassword1">描述</label>
+                                <input type="text" name="content" value="{$data->content}" class="form-control input-sm" id="exampleInputPassword1">
+                            </div>
+
+                          
+                            
+                            <!-- <botton type="submit" class="btn btn-sm m-t-10">注册</botton> -->
+                            <button type="submit" class="btn btn-sm m-t-10">添加</button>
+                           
+                            
+                        </form>
+                    </div>
+                </div>
+{/block}

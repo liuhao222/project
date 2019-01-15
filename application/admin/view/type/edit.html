@@ -1,0 +1,20 @@
+{extend name="default/index"}
+
+{block name="content"}
+	     <!-- Basic with panel-->
+                <div class="block-area" id="basic">
+                   <div class="tile p-15">
+                        <form role="form" method="post" action="/admin/type_update/{$data->id}">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">分类名</label>
+                                <input type="text" name="name" class="form-control input-sm" id="exampleInputEmail1" value="{$data['name']}"> 	
+                            </div>
+                         
+                            <!-- <botton type="submit" class="btn btn-sm m-t-10">注册</botton> -->
+                            <button type="submit" class="btn btn-sm m-t-10">修改</button>
+                      	   
+                            
+                        </form>
+                    </div>
+                </div>
+{/block}

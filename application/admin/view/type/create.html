@@ -1,0 +1,36 @@
+{extend name="default/index"}
+
+{block name="content"}
+	     <!-- Basic with panel-->
+                <div class="block-area" id="basic">
+                   <div class="tile p-15">
+                        <form role="form" method="post" action="/admin/type_save">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">分类名</label>
+                                <input type="text" name="name" class="form-control input-sm" id="exampleInputEmail1" placeholder="请输入用户名"> 	
+                            </div>
+                            
+                         
+
+                       
+
+                                <div class="form-group">
+                                 <label for="exampleInputPassword1">父类</label>
+                               	 <select name="pid" class="main-search">
+									<option value="0">顶级分类</option>
+                                    {foreach $data as $v}
+									<option {if $id == $v->id}selected{/if} value="{$v->id}">{$v->typename|raw}</option>
+                                    {/foreach}
+									   
+								 </select>
+                            </div>
+                            
+                          	
+                            <!-- <botton type="submit" class="btn btn-sm m-t-10">注册</botton> -->
+                            <button type="submit" class="btn btn-sm m-t-10">添加</button>
+                      	   
+                            
+                        </form>
+                    </div>
+                </div>
+{/block}
