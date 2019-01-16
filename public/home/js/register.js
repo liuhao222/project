@@ -42,7 +42,7 @@ $(function(){
 		var len = $('#user_name').val().length;
 		if(len<5||len>20)
 		{
-			$('#user_name').next().html('请输入5-20个字符的用户名')
+			$('#user_name').next().html('请输入6-12个字符的用户名')
 			$('#user_name').next().show();
 			error_name = true;
 		}
@@ -57,7 +57,7 @@ $(function(){
 		var len = $('#pwd').val().length;
 		if(len<8||len>20)
 		{
-			$('#pwd').next().html('密码最少8位，最长20位')
+			$('#pwd').next().html('密码最少6位，最长12位')
 			$('#pwd').next().show();
 			error_password = true;
 		}

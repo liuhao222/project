@@ -4,6 +4,8 @@ namespace app\home\controller;
 
 use think\Controller;
 use think\Request;
+use app\common\model\User;
+use think\captcha\Captcha;
 
 class LoginController extends Controller
 {
@@ -14,8 +16,7 @@ class LoginController extends Controller
      */
     public function index()
     {
-        // 登录显示
-        return view('denglu/login');
+        return view('login/index');
     }
 
     /**
@@ -82,5 +83,47 @@ class LoginController extends Controller
     public function delete($id)
     {
         //
+    }
+
+        public function do_login(Request $req)
+    {
+        $data = $req->post();
+        // dump($data);
+        $code = $data['code'];
+        $captcha = new Captcha();
+        if(!$captcha->check($code))
+        {
+            return $this->error('验证码不正确','/home/login_index');
+        }
+        $uname = $data['uname'];
+        $pwd = $req->post('pwd',null,'md5');
+        // $data['pwd'] = md5($data['pwd']);
+        $res = User::where('uname','=',$uname)->where('pwd','=',$pwd)->find();
+        if(empty($res)){
+            return $this->error('密码错误','/home/login_index');
+        }
+            //保存一个数据用来验证用户是否登录
+            session('loginAdmin',true);
+            //保存(session)登录用户信息
+            session('users',$res);
+            return $this->success('登录成功','/home/index');
+    }
+
+        /* 显示验证码
+     */
+    public function code()
+    {
+        $config =    [
+        // 验证码字体大小
+        'fontSize'=>15,    
+        // 验证码位数
+        'length'=>4,   
+        // 关闭验证码杂点
+        'useNoise'=>false, 
+        //是否画混淆曲线
+        'useCurve'=>false,
+    ];
+        $captcha = new Captcha($config);
+        return $captcha->entry();
     }
 }

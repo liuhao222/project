@@ -57,14 +57,16 @@ class UserController extends Controller
         if(empty($data['pwd'])){
          return $this->error('密码不能为空');
        }
+     
+
 
 
        try {
            User::create($data,true);   //插入数据库，true  过滤字段
        } catch (\Exception $e) { //  \表示根目录下的
-           return $this->error('添加失败！','/admin/user_create');
+           return $this->error('注册失败！','/admin/user_create');
        }
-            return $this->success('添加成功！','/admin/user_index');       
+            return $this->success('注册成功！','/admin/user_index');       
     }
 
     /**

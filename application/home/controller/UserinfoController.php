@@ -5,7 +5,7 @@ namespace app\home\controller;
 use think\Controller;
 use think\Request;
 
-class ZhuController extends Controller
+class UserinfoController extends Controller
 {
     /**
      * 显示资源列表
@@ -14,8 +14,7 @@ class ZhuController extends Controller
      */
     public function index()
     {
-        //显示注册
-        return view('/denglu/register');
+        return view('userinfo/index');
     }
 
     /**
@@ -82,5 +81,15 @@ class ZhuController extends Controller
     public function delete($id)
     {
         //
+    }
+
+    /**
+     * 显示资源列表
+     *
+     * @return \think\Response
+     */
+    public function address()
+    {
+        return view('userinfo/address');
     }
 }

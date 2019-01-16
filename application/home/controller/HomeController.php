@@ -14,10 +14,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        //
-        return view('default/index');
+        return view('home/index');
     }
-
+    
     /**
      * 显示创建资源表单页.
      *

@@ -13,31 +13,36 @@ Route::get('think', function () {
     return 'hello,ThinkPHP5!';
 });
 
+
+//前台
+//前台首页
+Route::rule('/home/index','home/HomeController/index');//->middleware('CheckAdmin')
+//登录页面
+Route::rule('/home/login_index','home/LoginController/index');
+//执行登录
+Route::rule('/home/do_login','home/LoginController/do_login');
+//注册页面
+Route::rule('/home/zhuce_index','home/ZhuceController/index');
+//注册
+Route::rule('/home/zhuce_save','home/ZhuceController/save');
+
+//用户中心页面
+Route::rule('/home/userinfo_index','home/UserinfoController/index');
+//购物车页面
+Route::rule('/home/car_index','home/CarController/index');
+//订单页面
+Route::rule('/home/order_index','home/OrderController/index');
+//收货地址页面
+Route::rule('/home/userinfo_address','home/UserinfoController/address');
+
+
  
-// 前台主页
-Route::get('/home_index', 'home/HomeController/index');
 
-// 前台登录页
-Route::rule('/home/delu_login','home/LoginController/index');
 
-// 前台注册
-Route::rule('/home/zhuce_register','home/ZhuController/index');
 
-// 前台用户中心
-Route::rule('/home/geren_info','home/UserController/index');
 
-// 前台购物车
-Route::rule('/home/gouwu_cart','home/ShopController/index');
-
-// 前台订单
-Route::rule('/home/dingdan_order','home/ShopController/Ding');
-
-// 前台订单里收获地址跳转
-Route::rule('/home/shouhuo_site','home/ShopController/Shou');
-
-// 前台从商城跳转至结算页
-Route::rule('/home/jiesuan_place','home/ShopController/Jiesuan');
  
+//后台
 //后台首页
 Route::rule('/admin/index','admin/LoginController/index')->middleware('CheckAdmin');//->middleware('CheckAdmin')
 //用户列表

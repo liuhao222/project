@@ -5,7 +5,7 @@ namespace app\home\controller;
 use think\Controller;
 use think\Request;
 
-class ShopController extends Controller
+class OrderController extends Controller
 {
     /**
      * 显示资源列表
@@ -14,26 +14,7 @@ class ShopController extends Controller
      */
     public function index()
     {
-        //前台购物车
-        return view('/shop/cart');
-    }
-
-    public function Ding()
-    {
-        //前台购物车订单
-        return view('/shop/order');
-    }
-
-    public function Shou()
-    {
-        //前台收货地址
-        return view('/shop/site');
-    }
-
-    public function Jiesuan()
-    {
-        //前台收货地址
-        return view('/shop/place');
+        return view('order/index');
     }
 
     /**

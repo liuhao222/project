@@ -5,7 +5,7 @@ namespace app\home\controller;
 use think\Controller;
 use think\Request;
 
-class UserController extends Controller
+class CarController extends Controller
 {
     /**
      * 显示资源列表
@@ -14,9 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-
-        // 前台个人中心显示
-        return view('/user/info');
+        return view('car/index');
     }
 
     /**
