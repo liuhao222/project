@@ -1,0 +1,39 @@
+{extend name="default/index"}
+{block name="content"}
+     <!-- Basic with panel-->
+                <div class="block-area" id="basic">
+                   <div class="tile p-15">
+                        <form role="form" method="post" action="/admin/friendlink_update/{$data->id}" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">友情链接名</label>
+                                <input type="text" name="linkname" value="{$data->linkname}" class="form-control input-sm" id="exampleInputEmail1" >  
+                            </div>
+                            
+                            <div class="form-group">
+                                 <label for="exampleInputPassword1">友情链接地址</label>
+                                <input type="text" name="url" value="{$data->url}" class="form-control input-sm" id="exampleInputPassword1">
+                            </div>
+                            
+                            <div class="form-group">
+                                 <label for="exampleInputPassword1">友情链接图片</label>
+                                <td><img src="/friendlinkpic/{$data->friendlinkpic}" alt=""> 
+                                    <input type="file" name="friendlinkpic" class="form-control input-sm" id="exampleInputPassword1">
+                                </td>
+                            </div>
+
+                          
+                            <div class="form-group">
+                                 <label for="exampleInputPassword1">友情链接介绍</label>
+                                <input type="text" name="content" value="{$data->content}" class="form-control input-sm" id="exampleInputPassword1">
+                            </div>
+
+                          
+                            
+                            <!-- <botton type="submit" class="btn btn-sm m-t-10">注册</botton> -->
+                            <button type="submit" class="btn btn-sm m-t-10">添加</button>
+                           
+                            
+                        </form>
+                    </div>
+                </div>
+{/block}

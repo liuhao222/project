@@ -185,4 +185,16 @@ class UserController extends Controller
        }
             return $this->error('删除失败');
     }
+
+     /**
+     * 检测用户名是否存在
+     */
+    public function search_uname(){
+       $name = $_GET['uname'];
+       $data = User::where('uname','=',$name)->find();
+       if(empty($data)){
+            return json_encode(['status'=>400]);
+       }
+       return json_encode(['status'=>200]);
+    }
 }

@@ -16,7 +16,7 @@ class ConfigController extends Controller
     public function index()
     {
          $data = Config::select();
-         dump($data);
+        
         return view('config/index',['data'=>$data]);
 
     }

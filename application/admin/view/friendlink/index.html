@@ -1,0 +1,38 @@
+{extend name="default/index"}
+{block name="content"}
+<div class="block-area" id="defaultStyle">
+                    <h3 class="block-title">用户列表</h3>
+                    <table class="table tile">
+                        <thead>
+                            <tr>
+                                <th>编号</th>
+                                <th>友情链接名称</th>
+                                <th>友情链接地址</th>
+                                <th>友情链接图片</th>
+                                <th>友情链接介绍</th>
+                                <th>添加时间</th>
+                                <th>修改时间</th>
+                                <th>操作</th>
+                                </tr>
+                        </thead>
+                        <tbody>
+                            {foreach $data as $v}
+                            <tr>
+                                <td>{$v->id}</td>
+                                <td>{$v->linkname}</td>
+                                <td>{$v->url} </td>
+                                <td><img src="/friendlinkpic/{$v->friendlinkpic}" alt=""> </td>
+                                <td>{$v->content} </td>
+                                <td>{$v->create_time}</td>
+                                <td>{$v->update_time}</td>
+                                <td> <a href="/admin/friendlink_edit/{$v->id}">修改</a>||<a href="/admin/friendlink_delete/{$v->id}">删除</a></td>
+                                
+                               </tr>
+                         {/foreach}
+                          
+                        </tbody>
+                       
+                    </table>
+                  
+                </div>
+{/block}

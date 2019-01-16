@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!--[if IE 9 ]><html class="ie9"><![endif]-->
+ <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+        <meta name="format-detection" content="telephone=no">
+        <meta charset="UTF-8">
+
+        <meta name="description" content="Violate Responsive Admin Template">
+        <meta name="keywords" content="Super Admin, Admin, Template, Bootstrap">
+
+        <title>Super Admin Responsive Template</title>
+            
+        <!-- CSS -->
+        <link href="/admin/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/admin/css/animate.min.css" rel="stylesheet">
+        <link href="/admin/css/font-awesome.min.css" rel="stylesheet">
+        <link href="/admin/css/form.css" rel="stylesheet">
+        <link href="/admin/css/calendar.css" rel="stylesheet">
+        <link href="/admin/css/style.css" rel="stylesheet">
+        <link href="/admin/css/icons.css" rel="stylesheet">
+        <link href="/admin/css/generics.css" rel="stylesheet"> 
+    </head>
+    <body id="skin-blur-violate">
+        <section id="login">
+            <header>
+                <h1>SUPER ADMIN</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eu risus. Curabitur commodo lorem fringilla enim feugiat commodo sed ac lacus.</p>
+            </header>
+        
+            <div class="clearfix"></div>
+            
+            <!-- Login -->
+            <form class="box tile animated active" id="box-login" method="post" action="/admin/do_login">
+                <h2 class="m-t-0 m-b-15">登录</h2>
+                <div id="error"></div>
+                <input type="text" name="uname" class="login-control m-b-10" placeholder="管理员账号">
+                <input type="password" name="pwd" class="login-control" placeholder="密码"><br><br>
+                <input type="text" name="code" class="login-control m-b-10" placeholder="验证码">
+                <img src="/admin/code" alt="" onclick="this.src='/admin/code?'+Math.random()">
+                <div class="checkbox m-b-20">
+                   
+                </div>
+                <button class="btn btn-sm m-r-5" id="dl">Sign In</button>
+                
+               
+            </form>
+            
+            <!-- Register -->
+            
+        </section>                      
+        
+        <!-- Javascript Libraries -->
+        <!-- jQuery -->
+        <script src="js/jquery.min.js"></script> <!-- jQuery Library -->
+        
+        <!-- Bootstrap -->
+        <script src="js/bootstrap.min.js"></script>
+        
+        <!--  Form Related -->
+        <script src="js/icheck.js"></script> <!-- Custom Checkbox + Radio -->
+        
+        <!-- All JS functions -->
+        <script src="js/functions.js"></script>
+    </body>
+
+    <script type="text/javascript">
+        $("#uname").blur(function(){
+            $.ajax({
+                type:'get',
+                url:'/admin/search_uname',
+                dataType:'json',
+                data:{'uname' : $("#uname").val()},
+                success : function(data){
+                    let obj = JSON.parse(data);
+                    console.log(obj.status);
+                    if(obj.status == 400){
+                        $("#error").html('用户名不存在');
+                        $("#dl").attr('disabled',true);
+                    }
+                    if(obj.status == 200){
+                        $("#error").html('');
+                        $("#dl").attr('disabled',false);
+                    }
+                },
+            });
+        })
+</script>

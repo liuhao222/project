@@ -4,10 +4,9 @@ namespace app\admin\controller;
 
 use think\Controller;
 use think\Request;
-use app\common\model\Goods;
-use app\common\model\Type;
-use app\tools\Cattree;
-class GoodsController extends Controller
+use app\common\model\Friendlink;
+
+class FriendlinkController extends Controller
 {
     /**
      * 显示资源列表
@@ -16,11 +15,11 @@ class GoodsController extends Controller
      */
     public function index()
     {
-        $data = Goods::select();
+        $data = Friendlink::select();
        
          // dump($data);
 
-        return view('goods/index',['data'=>$data]);
+        return view('friendlink/index',['data'=>$data]);
     }
 
     /**
@@ -30,10 +29,8 @@ class GoodsController extends Controller
      */
     public function create()
     {
-    $data = Type::select();
-      $c = new Cattree($data);
-      $data = $c->getTree();
-      return view('goods/create',['data'=>$data]);
+         return view('friendlink/create');
+
     }
 
     /**
@@ -44,29 +41,30 @@ class GoodsController extends Controller
      */
     public function save(Request $request)
     {
-        $data = $request->post();
-        $file = $request->file('pic');
-        $info = $file->move('photo');
+         $data = $request->post();
+         // dump($data);
+        $file = $request->file('friendlinkpic');
+        // dump($file);
+        $info = $file->move('friendlinkpic');
         $filePath = $info->getSaveName();
         // echo $filePath.'----------';
         // $data['pic'] = $filePath;
 
         //缩放图片
-        $image = \think\Image::open('photo/'.$filePath); //photo下的路径的图片
+        $image = \think\Image::open('friendlinkpic/'.$filePath); //friendlinkpic下的路径的图片
         $newName = str_replace('\\','/sm_',$filePath);//弄一个新文件名，不和原图片重名
         // echo $newName;die;
         //将图片裁剪为300x300并保存为crop.png
-        $image->thumb(150, 150)->save('photo/'.$newName);
-        $data['pic'] = $newName;
-        try {
-             Goods::create($data,true);
-        } catch (\Exception $e) {
-            return $this->error('添加商品失败！','/admin/goods_create');
-        }
-            return $this->success('添加商品成功！','/admin/goods_index');
-       
+        $image->thumb(150, 150)->save('friendlinkpic/'.$newName);
+        $data['friendlinkpic'] = $newName;
         // dump($data);
-        // dump($request->file());
+        // die();
+        try {
+             Friendlink::create($data,true);
+        } catch (\Exception $e) {
+            return $this->error('添加友情链接失败！','/admin/friendlink_create');
+        }
+            return $this->success('添加友情链接成功！','/admin/friendlink_index');
 
     }
 
@@ -89,8 +87,9 @@ class GoodsController extends Controller
      */
     public function edit($id)
     {
-        $data = Goods::find($id);
-        return view('goods/edit',['data'=>$data]);
+         $data = Friendlink::find($id);
+         // dump($data);
+        return view('friendlink/edit',['data'=>$data]);
     }
 
     /**
@@ -102,20 +101,20 @@ class GoodsController extends Controller
      */
     public function update(Request $request, $id)
     {
-         $data = $request->post();
-        $file = $request->file('pic');
-        $info = $file->move('photo');
+       $data = $request->post();
+        $file = $request->file('friendlinkpic');
+        $info = $file->move('friendlinkpic');
         $filePath = $info->getSaveName();
         // echo $filePath.'----------';
         // $data['pic'] = $filePath;
 
         //缩放图片
-        $image = \think\Image::open('photo/'.$filePath); //photo下的路径的图片
+        $image = \think\Image::open('friendlinkpic/'.$filePath); //photo下的路径的图片
         $newName = str_replace('\\','/sm_',$filePath);//弄一个新文件名，不和原图片重名
         // echo $newName;die;
         //将图片裁剪为300x300并保存为crop.png
-        $image->thumb(150, 150)->save('photo/'.$newName);
-        $data['pic'] = $newName;
+        $image->thumb(150, 150)->save('friendlinkpic/'.$newName);
+        $data['friendlinkpic'] = $newName;
 
 
         
@@ -126,11 +125,11 @@ class GoodsController extends Controller
         // dump($data);
         // die();
          try {
-             Goods::update($data,['id'=>$id]);   //修改数据到数据库
+             Friendlink::update($data,['id'=>$id]);   //修改数据到数据库
         } catch (\Exception $e) {
-            return $this->error('修改失败！','/admin/goods_index');
+            return $this->error('修改失败！','/admin/friendlink_index');
         }
-            return $this->success('修改成功！','/admin/goods_index');
+            return $this->success('修改成功！','/admin/friendlink_index');
     }
 
     /**
@@ -141,12 +140,12 @@ class GoodsController extends Controller
      */
     public function delete($id)
     {
-        $res = Goods::find($id);
-        dump($res);
-        $data = Goods::destroy($id,$res['pic']);
+        $res = Friendlink::find($id);
+        // dump($res);
+        $data = Friendlink::destroy($id,$res['friendlinkpic']);
         if($data){
-            return $this->success('删除成功！','/admin/goods_index');
+            return $this->success('删除成功！','/admin/friendlink_index');
        }
-            return $this->error('删除失败','/admin/goods_index');
+            return $this->error('删除失败','/admin/friendlink_index');
     }
 }

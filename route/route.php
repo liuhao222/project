@@ -15,28 +15,28 @@ Route::get('think', function () {
 
  
 //后台首页
-Route::rule('/admin/index','admin/LoginController/index');
+Route::rule('/admin/index','admin/LoginController/index')->middleware('CheckAdmin');//->middleware('CheckAdmin')
 //用户列表
-Route::get('/admin/user_index','admin/UserController/index');
+Route::get('/admin/user_index','admin/UserController/index')->middleware('CheckAdmin');
 
 //后台添加用户列表
-Route::rule('/admin/user_create','admin/UserController/create');
+Route::rule('/admin/user_create','admin/UserController/create')->middleware('CheckAdmin');
 //执行后台用户添加
-Route::rule('/admin/user_save','admin/UserController/save');
+Route::rule('/admin/user_save','admin/UserController/save')->middleware('CheckAdmin');
 //执行后台删除
-Route::rule('/admin/user_delete/:id','admin/UserController/delete');
+Route::rule('/admin/user_delete/:id','admin/UserController/delete')->middleware('CheckAdmin');
 //后台修改页面
-Route::rule('/admin/user_edit/:id','admin/UserController/edit');
+Route::rule('/admin/user_edit/:id','admin/UserController/edit')->middleware('CheckAdmin');
 //执行用户修改
-Route::rule('/admin/user_update/:id','admin/UserController/update');
+Route::rule('/admin/user_update/:id','admin/UserController/update')->middleware('CheckAdmin');
 //修改密码页面
-Route::rule('/admin/user_updatepwd/:id','admin/UserController/updatepwd');
+Route::rule('/admin/user_updatepwd/:id','admin/UserController/updatepwd')->middleware('CheckAdmin');
 //执行修改密码
-Route::rule('/admin/user_reupdatepwd/:id','admin/UserController/reupdatepwd');
+Route::rule('/admin/user_reupdatepwd/:id','admin/UserController/reupdatepwd')->middleware('CheckAdmin');
 //用户启用
-Route::rule('/admin/user_start/:id','admin/UserController/start');
+Route::rule('/admin/user_start/:id','admin/UserController/start')->middleware('CheckAdmin');
 //用户禁用
-Route::rule('/admin/user_stop/:id','admin/UserController/stop');
+Route::rule('/admin/user_stop/:id','admin/UserController/stop')->middleware('CheckAdmin');
 
 //分类管理路由组   
 Route::group(['name'=>'/admin','prefix'=>'admin/TypeController/'],function(){
@@ -57,7 +57,7 @@ Route::rule('type_edit/:id','edit');
 //执行修改分类
 Route::rule('type_update/:id','update');
 
-});
+})->middleware('CheckAdmin');
 
 
 //商品 管理路由组   
@@ -75,10 +75,10 @@ Route::rule('goods_edit/:id','edit');
 //执行商品修改
 Route::rule('goods_update/:id','update');
 
-});
+})->middleware('CheckAdmin');
 
 //网站配置
-Route::rule('/admin/config_index','admin/ConfigController/index');
+Route::rule('/admin/config_index','admin/ConfigController/index')->middleware('CheckAdmin');
 //用户启用
 Route::rule('/admin/config_start/:id','admin/ConfigController/start');
 //用户禁用
@@ -87,3 +87,33 @@ Route::rule('/admin/config_stop/:id','admin/ConfigController/stop');
 Route::rule('/admin/config_edit/:id','admin/ConfigController/edit');
 //执行修改网站配置
 Route::rule('/admin/config_update/:id','admin/ConfigController/update');
+
+
+//后台登录显示页
+Route::rule('/admin/login','admin/LoginController/login');
+//后台登录执行
+Route::rule('/admin/do_login','admin/LoginController/do_login');
+//检测用户名是否存在
+Route::rule('/admin/search_uname','admin/UserController/search_uname');
+//显示验证码
+Route::rule('/admin/code','admin/LoginController/code');
+//退出登录
+Route::rule('/admin/logout','admin/LoginController/logout');
+
+
+//商品 管理路由组   
+Route::group(['name'=>'/admin','prefix'=>'admin/FriendlinkController/'],function(){
+// //显示商品列表页面
+Route::rule('friendlink_index','index','get');   //get 表示用什么方式请求的    url是用a链接请求的，所以要用get不能用post
+// //商品添加页面
+Route::rule('friendlink_create','create');   
+// //执行商品添加
+Route::rule('friendlink_save','save');
+// //执行商品删除
+Route::rule('friendlink_delete/:id','delete');
+// //商品修改页面
+Route::rule('friendlink_edit/:id','edit');
+// //执行商品修改
+Route::rule('friendlink_update/:id','update');
+
+})->middleware('CheckAdmin');
