@@ -46,12 +46,12 @@ class ZhuceController extends Controller
              $att="/^[0-9a-zA-Z_][0-9a-zA-Z_]{5,11}$/";
              //调用正则匹配函数
              //验证用户名是否符合规则
-            if(!preg_match_all($att,$data['uname'],$res))
-            {
+            // if(!preg_match_all($att,$data['uname'],$res))
+            // {
              
-               return $this->error('注册失败，请输入6-12位的数字，字母或下划线的用户名','/home/zhuce_index');
+            //    return $this->error('注册失败，请输入6-12位的数字，字母或下划线的用户名','/home/zhuce_index');
                 
-             }
+            //  }
 
              //密码是否一致
             if($data['pwd'] != $data['repwd']){

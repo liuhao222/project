@@ -21,10 +21,16 @@ Route::rule('/home/index','home/HomeController/index');//->middleware('CheckAdmi
 Route::rule('/home/login_index','home/LoginController/index');
 //执行登录
 Route::rule('/home/do_login','home/LoginController/do_login');
+//退出登录
+Route::rule('/home/logout','home/LoginController/logout');
 //注册页面
 Route::rule('/home/zhuce_index','home/ZhuceController/index');
 //注册
 Route::rule('/home/zhuce_save','home/ZhuceController/save');
+//商品列表页
+Route::rule('/home/goods','home/GoodsController/index');
+//商品详情页
+Route::rule('/home/goods_list/:id','home/GoodsController/list','get');
 
 //用户中心页面
 Route::rule('/home/userinfo_index','home/UserinfoController/index');

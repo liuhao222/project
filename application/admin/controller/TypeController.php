@@ -31,7 +31,9 @@ class TypeController extends Controller
     public function create($id='')
     {
         echo $id;
+        dump($id);
         $data = Type::select();   //获取数据
+        // dump($data);
         $c = new Cattree($data);
         $data = $c->getTree();    //获取分类树
        // dump($data);

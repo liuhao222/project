@@ -7,6 +7,7 @@
                             <tr>
                                 <th>编号</th>
                                 <th>商品名</th>
+                                <th>称量</th>
                                 <th>价格</th>
                                 <th>图片</th>
                                 <th>父类</th>
@@ -22,6 +23,8 @@
                             <tr>
                                 <td>{$v->id}</td>
                                 <td>{$v->name}</td>
+                                <td>{$v->cl}</td>
+                                
                                 <td>{$v->price} </td>
                                 <td><img src="/photo/{$v->pic}" alt=""> </td>
                                 <td>{$v->type->name} </td>

@@ -99,11 +99,12 @@ class LoginController extends Controller
         $pwd = $req->post('pwd',null,'md5');
         // $data['pwd'] = md5($data['pwd']);
         $res = User::where('uname','=',$uname)->where('pwd','=',$pwd)->find();
+        
         if(empty($res)){
             return $this->error('密码错误','/home/login_index');
         }
             //保存一个数据用来验证用户是否登录
-            session('loginAdmin',true);
+            session('loginUser',true);
             //保存(session)登录用户信息
             session('users',$res);
             return $this->success('登录成功','/home/index');
@@ -126,4 +127,19 @@ class LoginController extends Controller
         $captcha = new Captcha($config);
         return $captcha->entry();
     }
+     /**
+     * 退出登录
+     *
+     * @param  \think\Request  $request
+     * @param  int  $id
+     * @return \think\Response
+     */
+    public function logout()
+    {
+        session('loginUser',null);
+        
+        return $this->error('正在退出中....','/home/index');
+    }
+
+
 }

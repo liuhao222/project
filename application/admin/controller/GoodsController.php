@@ -18,7 +18,7 @@ class GoodsController extends Controller
     {
         $data = Goods::select();
        
-         // dump($data);
+         dump($data);
 
         return view('goods/index',['data'=>$data]);
     }
@@ -30,10 +30,14 @@ class GoodsController extends Controller
      */
     public function create()
     {
+        
     $data = Type::select();
       $c = new Cattree($data);
+      // dump($c);
       $data = $c->getTree();
+      // dump($data);
       return view('goods/create',['data'=>$data]);
+
     }
 
     /**

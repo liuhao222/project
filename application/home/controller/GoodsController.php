@@ -5,9 +5,7 @@ namespace app\home\controller;
 use think\Controller;
 use think\Request;
 use app\common\model\Goods;
-use app\common\model\Type;
-use app\tools\Cattree;
-class HomeController extends Controller
+class GoodsController extends Controller
 {
     /**
      * 显示资源列表
@@ -16,25 +14,23 @@ class HomeController extends Controller
      */
     public function index()
     {
-         $a = Goods::select();
-         
-         $data = Type::select();
-
-        // $sql=Db::field('data_goods.type_id,data_type.id')//截取表s的name列 和表a的全部
-        // ->table(['data_goods','data_type'])
-        // ->where('data_goods.type_id=data_type.id')//查询条件语句
-        // ->select();
-        // dump($sql);
-     
-    // Db::table('data_goods','data_type')->where('status',1)->select();
-        
-        
-        dump($a);
-        dump($data);
-        return view('home/index',['data'=>$data,'a'=>$a]);
-
+        $data = Goods::select();
+        return view('goods/index',['data'=>$data]);
     }
-    
+
+     /**
+     * 商品资源列表
+     *
+     * @return \think\Response
+     */
+    public function list($id)
+    {
+
+        $data = Goods::find($id);
+        dump($data);
+        return view('goods/list',['data'=>$data]);
+    }
+
     /**
      * 显示创建资源表单页.
      *
