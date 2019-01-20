@@ -62,7 +62,7 @@ class ConfigController extends Controller
     public function edit($id)
     {
          $data = Config::find($id);
-        // var_dump($data);
+        // var_//dump($data);
         return view('config/edit',['data'=>$data]);
     }
 

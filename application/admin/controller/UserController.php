@@ -25,7 +25,7 @@ class UserController extends Controller
             $search[]=['status','=',"{$_GET['status']}"];
         }
         $data = User::where($search)->paginate(3)->appends($_GET);
-        // dump($data);
+        // //dump($data);
 
        return view('user/index',['data'=>$data]);
     }
@@ -48,7 +48,7 @@ class UserController extends Controller
      */
     public function save(Request $request)
     {
-        // dump($request->post());   //打印获取数据
+        // //dump($request->post());   //打印获取数据
        $data = $request->post();   //获取数据添加的数据
        if($data['pwd'] != $data['repwd']){
         return $this->error('两次输入的密码不一致，请重新输入');
@@ -89,7 +89,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $data = User::find($id);
-        // var_dump($data);
+        // var_//dump($data);
         return view('user/edit',['data'=>$data]);
     }
 
@@ -102,7 +102,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // dump($request->post());
+        // //dump($request->post());
         $data = $request->post();   //获取数据添加的数据
         try {
              User::update($data,['uid'=>$id]);   //修改数据到数据库
@@ -116,9 +116,9 @@ class UserController extends Controller
     public function updatepwd($id)
     {
         $data = User::find($id);
-        // var_dump($data);
+        // var_//dump($data);
 
-        // var_dump($data);
+        // var_//dump($data);
         return view('user/updatepwd',['data'=>$data]);
     }
 
@@ -126,11 +126,11 @@ class UserController extends Controller
      public function reupdatepwd(Request $request, $id)
     {
         $data = User::find($id);
-        // var_dump($data);
-        // dump($request->post());
+        // var_//dump($data);
+        // //dump($request->post());
         
         $res = $request->post();   //获取数据添加的数据
-        // var_dump($res);
+        // var_//dump($res);
       
         if(empty($res['pwd']) || empty($res['repwd'])){
             return $this->error('新密码不能为空哦！');

@@ -1,0 +1,54 @@
+{extend name="default/index"}
+
+{block name="content"}
+              <!-- Deafult Table -->
+              <form action="/admin/user_index" method="get">
+                    
+              </form>
+              
+                <div class="block-area" id="defaultStyle">
+                    <h3 class="block-title">用户列表</h3>
+                    <table class="table tile">
+                        <thead>
+                            <tr>
+                                <th>排序</th>
+                                <th>商品id</th>
+                                <th>用户id</th>
+                                <th>数量</th>
+                                <th>状态</th>
+                                <th>商品名称</th>
+                                <th>商品价格</th>
+                                <th>添加时间</th>
+                                <th>商品单位</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {foreach $data as $v}
+                            <tr>
+                                <td>{$v->id}</td>
+                                <td>{$v->shopid}</td>
+                                <td>{$v.uid} </td>
+                                <td>{$v.num} </td>
+                                <td>
+                                    {if $v->status==1}
+                                    已发货
+                                    {elseif $v->status==2}
+                                    待发货
+                                    {/if}
+                                </td>
+                                <td>{$v.shopname}</td>
+                                <td>{$v.shopprice}</td>
+                                <td>{$v->create_time}</td>
+                                <td>{$v->shopcl}</td>
+                                <td><a href="/admin/order_start/{$v->uid}">发货</a>||<a href="/admin/order_stop/{$v->uid}">待发货</a></td>
+                                
+
+                            </tr>
+                            {/foreach}
+                          
+                        </tbody>
+                    </table>
+                  
+                </div>
+{/block}

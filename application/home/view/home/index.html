@@ -3,6 +3,8 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 	<title>天天生鲜-首页</title>
+	<link rel="stylesheet" type="text/css" href="/home/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="/home/css/index.css" />
 	<link rel="stylesheet" type="text/css" href="/home/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="/home/css/main.css">
 	<script type="text/javascript" src="/home/js/jquery-1.12.4.min.js"></script>
@@ -12,20 +14,31 @@
 <body>
 	<div class="header_con">
 		<div class="header">
-			<div class="welcome fl">欢迎来到天天生鲜!</div>
+			<div class="welcome fl">{$dd['0']['webname']}</div>
 			<div class="fr">
 				<div class="login_info fl">
 					欢迎您：<em>张 山</em>
 				</div>
+				<?php 
+					if(session('loginUser')){
+				?>
 				<div class="login_btn fl">
-					
-                           
-                    <a href="">{:session('users.uname')}</a>
+					        
+                    <a href="/home/userinfo_index">{:session('users.uname')}</a>
                     <a href="/home/logout">退出登录</a>
-					<a href="/home/login_index">登录</a>
+					
+				</div>
+				<?php
+					}else{
+				?>
+				<div class="login_btn fl">
+					<a href="/home/login_index">请登录</a>
 					<span>|</span>
 					<a href="/home/zhuce_index">注册</a>
 				</div>
+				<?php
+					}
+				?>
 				<div class="user_link fl">
 					<span>|</span>
 					<a href="/home/userinfo_index">用户中心</a>
@@ -37,83 +50,88 @@
 			</div>
 		</div>		
 	</div>
-
 	
 	  {block name="content"}
 	<div class="search_bar clearfix">
-		<a href="/home/index" class="logo fl"><img src="images/logo.png"></a>
-		<div class="search_con fl">
+		<a href="/home/index" class="logo fl"><img src="/images/{$dd['0']['logo']}"></a>
+		<!-- <div class="search_con fl">
 			<input type="text" class="input_text fl" name="" placeholder="搜索商品">
 			<input type="button" class="input_btn fr" name="" value="搜索">
-		</div>
-		
+		</div> -->
 	</div>
 
-	<div class="navbar_con">
-		<div class="navbar clearfix">
-			<h1 class="fl">全部商品分类</h1>
-			<ul class="navlist fl">
-				<li><a href="/home/index">首页</a></li>
-			</ul>
-		</div>
-	</div>
+	<div class="nav w1200">
+    	<a href="JavaScript:;" class="sp-kj" kj="">
+        	商品分类快捷
+            
+        </a>
+        <div class="kj-show2 none" kj-sh="">
+
+                {foreach $data as $value}
+	                {if $value['pid']==0}
+		                <div class="" mg="shiping">
+		                    <dl class="kj-dl1">
+		                        <dt>
+		                            <a href="#">{$value->name}</a>
+		                        </dt>  
+		                    </dl> 
+		                    <div class="" mg2="shiping">
+		                        {foreach $data as $v}
+									{if condition="$v.pid == $value.id"}
+			                        <dl style="border-bottom:none;">
+			                           <dd>
+			                                <a href="#">{$v->name}</a>
+			                            </dd>
+		                            	<div style="clear:both;"></div>
+			                        </dl>
+			                        {/if}
+			                    {/foreach}
+		                    </div>
+		                </div>
+	                {/if}
+                {/foreach}
+        </div>
+  
+        <div style="clear:both;"></div>
+    </div>
 
 	<div class="center_con clearfix">
-		<ul class="subnav fl">
-			{foreach $data as $v}
-			<li><a href="#model01" class="fruit">{$v->name}</a></li>
-			{/foreach}
-		
-		</ul>
 		<div class="slide fl">
 			<ul class="slide_pics">
-				<li><a href=""><img src="images/slide.jpg" alt="幻灯片"></li></a>
-				<li><a href=""><img src="images/slide02.jpg" alt="幻灯片"></li></a>
-				<li><a href=""><img src="images/slide03.jpg" alt="幻灯片"></li></a>
-				<li><a href=""><img src="images/slide04.jpg" alt="幻灯片"></li></a>
-				
+				<li><a href="/home/goods"><img src="images/slide.jpg" alt="幻灯片"></li></a>
+				<li><a href="/home/goods"><img src="images/slide02.jpg" alt="幻灯片"></li></a>
+				<li><a href="/home/goods"><img src="images/slide03.jpg" alt="幻灯片"></li></a>
+				<li><a href="/home/goods"><img src="images/slide04.jpg" alt="幻灯片"></li></a>
 			</ul>
 			<div class="prev"></div>
 			<div class="next"></div>
 			<ul class="points"></ul>
-		</div>
+			</div>
 		<div class="adv fl">
-			<a href="#"><img src="images/adv01.jpg"></a>
-			<a href="#"><img src="images/adv02.jpg"></a>
+			<a href="/home/goods"><img src="images/adv01.jpg"></a>
+			<a href="/home/goods"><img src="images/adv02.jpg"></a>
 		</div>
 	</div>
-	{foreach $data as $v}
-	<div class="list_model">
-		<div class="list_title clearfix">
-			<h3 class="fl" id="model01">{$v->name}</h3>
-			<div class="subtitle fl">
-				<span>|</span>
-				<a href="#"></a>
-				<a href="#"></a>
-				<a href="#"></a>
-			</div>
-			<a href="/home/goods" class="goods_more fr" id="fruit_more">查看更多 ></a>
-		</div>
 
-		<div class="goods_con clearfix">
-			
+		
+	
+	<div class="list_model">
+	
+
+		<div class="">
+			<a href="/home/goods"><h2 style="font-size:20px">查看更多商品</h2></a>
 			<ul class="goods_list fl">
-				{foreach $a as $val}
-				<li>
-					<h4><a href="#">{$val->name}</a></h4>
-					<a href="/home/goods_list/{$val->id}"><img src="/photo/{$val->pic}"></a>
-					<div class="prize">￥{$val->price}元</div>
-				</li>
-			{/foreach}
+					{foreach $a as $val}
+						<li>
+							<h4><a href="/home/goods_list/{$val->id}">{$val->name}</a></h4>
+							<a href="/home/goods_list/{$val->id}"><img src="/photo/{$val->pic}"></a>
+							<div class="prize">￥{$val->price}元</div>
+						</li>
+					{/foreach}
 			</ul>
 		</div>
 	</div>
-	{/foreach}
-
-
-
-
-	{/block}
+{/block}
 
 
 
@@ -121,6 +139,11 @@
 
 
 	<div class="footer">
+	
+	{foreach $f as $v}
+		<a href="{$v->url}">{$v->linkname}</a>
+		<span> | </span>
+	{/foreach}
 		<div class="foot_link">
 			<a href="#">关于我们</a>
 			<span>|</span>
@@ -130,10 +153,14 @@
 			<span>|</span>
 			<a href="#">友情链接</a>		
 		</div>
+
+
 		<p>CopyRight © 2016 北京天天生鲜信息技术有限公司 All Rights Reserved</p>
 		<p>电话：010-****888    京ICP备*******8号</p>
 	</div>
-	<script type="text/javascript" src="js/slideshow.js"></script>
+	<script type="text/javascript" src="/home/js/slideshow.js"></script>
+	<script type="text/javascript" src="/home/js/jquery.js"></script>
+	<script type="text/javascript" src="/home/js/zhonglin.js"></script>
 	<script type="text/javascript">
 		BCSlideshow('focuspic');
 		var oFruit = document.getElementById('fruit_more');

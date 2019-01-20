@@ -4,7 +4,9 @@ namespace app\home\controller;
 
 use think\Controller;
 use think\Request;
-
+use app\common\model\Order;
+use app\common\model\Config;
+use app\common\model\Friendlink;
 class OrderController extends Controller
 {
     /**
@@ -12,9 +14,17 @@ class OrderController extends Controller
      *
      * @return \think\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('order/index');
+          if(empty(session('loginUser'))){
+             return $this->error('请先登录','/home/login_index');
+        }
+       $dd = Config::select();
+       $f = Friendlink::select();
+        $data = Order::where('uid','=',session('users.uid'))->select();
+       // dump($data);
+
+        return view('order/index',['data'=>$data,'dd'=>$dd,'f'=>$f]);
     }
 
     /**
@@ -35,7 +45,18 @@ class OrderController extends Controller
      */
     public function save(Request $request)
     {
-        //
+        $dd = Config::select();
+         $data = $request->post();
+
+       // dump($data);
+        // die();
+        try {
+           Order::create($data,true);   //插入数据库，true  过滤字段
+       } catch (\Exception $e) { //  \表示根目录下的
+           return $this->error('下单失败','/home/car_index');
+       }
+            return $this->success('下单成功','/home/order_index');
+       
     }
 
     /**

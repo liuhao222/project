@@ -107,7 +107,7 @@ class LoginController extends Controller
      public function do_login(Request $req)
     {
         $data = $req->post();
-        // dump($data);
+        // //dump($data);
         $code = $data['code'];
         $captcha = new Captcha();
         if(!$captcha->check($code))

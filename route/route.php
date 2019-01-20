@@ -34,6 +34,9 @@ Route::rule('/home/goods_list/:id','home/GoodsController/list','get');
 
 //用户中心页面
 Route::rule('/home/userinfo_index','home/UserinfoController/index');
+//执行用户修改
+Route::rule('/home/userinfo_update/:id','home/UserinfoController/update');
+
 //购物车页面
 Route::rule('/home/car_index','home/CarController/index');
 //订单页面
@@ -41,8 +44,23 @@ Route::rule('/home/order_index','home/OrderController/index');
 //收货地址页面
 Route::rule('/home/userinfo_address','home/UserinfoController/address');
 
+//执行加入购物车
+Route::rule('/home/car_save/:id','home/CarController/save');
+//执行删除购物车
+Route::rule('/home/car_delete/:id','home/CarController/delete');
+//执行立即购买
+Route::rule('/home/buyshop_save','home/BuyshopController/save');
 
- 
+
+//订单结算页面
+Route::rule('/home/order_save','home/OrderController/save');
+
+
+
+
+
+//执行个人中心添加
+Route::rule('/home/userinfo_save','home/UserinfoController/save');
 
 
 
@@ -152,3 +170,11 @@ Route::rule('friendlink_edit/:id','edit');
 Route::rule('friendlink_update/:id','update');
 
 })->middleware('CheckAdmin');
+
+//后台订单管理页面
+Route::rule('/admin/order_index','admin/OrderController/index');
+//后台订单发货
+Route::rule('/admin/order_start/:id','admin/OrderController/start');
+//后台订单待发货
+Route::rule('/admin/order_stop/:id','admin/OrderController/stop');
+

@@ -25,3 +25,30 @@ img{border:0;}
 /* 浮动 */
 .fl{float:left}
 .fr{float:right}
+
+.data-con{ margin:20px;}
+.data-con .dt1{ margin-bottom:10px;}
+.data-con .dt1 p{ color:#000; font-size:14px; width:80px; text-align:right; margin-right:15px; display:inline-block;}
+.data-con .dt1 .dt-p{ line-height:46px;}
+.data-con .dt1 .touxiang{}
+.data-con .dt1 .touxiang .tu{ width:80px; height:80px; background:#E6E6E6; padding:3px; margin-right:15px; position:relative;}
+.data-con .dt1 .touxiang .tu img{ width:100%; height:100%;}
+.data-con .dt1 .touxiang .tu .img1{ position:absolute; top:0; left:0; width:157px; height:100%; border:0; padding:0; cursor:pointer; opacity:0;}
+.data-con .dt1 .touxiang .sc{ margin-top:64px; font-size:14px; color:#63A61D;}
+.data-con .dt1 input{ float:left; width:319px; height:44px; border:1px solid #D9D9D9; font-size:14px; color:#000000; padding:0 10px;}
+.data-con .dt2 input{ width:35px;}
+.data-con .dt2 span{ float:left; line-height:44px; margin-right:10px;}
+.data-con .dt3 input{ width:186px; margin-right:10px;}
+.data-con .dt3 button{ width:123px; height:46px; background:#63A61D; font-size:12px; color:#fff; border:none; cursor:pointer; float:left;}
+.data-con .dt4 input{ width:231px; margin-right:10px;}
+.data-con .dt4 button{ width:77px; height:46px; background:#63A61D; font-size:12px; color:#fff; border:none; cursor:pointer; float:left;}
+.data-con .btn-pst{ width:340px; height:44px; background:#63A61D; font-size:16px; color:#fff; border:none; cursor:pointer; margin:31px 0 0 95px;}
+		/*上传头像弹窗*/
+.tanchuang{ display:none; width:100%; height:100%;position:relative; position:absolute; top:0; left:0;}
+.t-c-bg{ width:100%; height:100%; position:absolute; top:0; left:0; background:#999;opacity:0.5;}
+.t-c-con{ width:669px; padding-bottom:41px;background:#fff; position:absolute; top:0; left:50%; margin:256px 0 0 -335px;}
+.t-c-con .tc-tit{ height:42px; background:#F2F2F2;}
+.t-c-con .tc-tit h3{ float:left; font-weight:normal; line-height:42px; font-size:14px; color:#000; padding-left:17px;}
+.t-c-con .tc-tit a{ float:right; display:inline-block; width:19px; height:19px; margin:12px 15px 0 0;}
+.t-c-con .tc-con img{ margin:24px auto 39px;}
+.t-c-con .tc-con button{ display:block;width:340px; height:44px; background:#F09E0B; font-size:16px; color:#fff; border:none; cursor:pointer; margin:0 auto;}

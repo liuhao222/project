@@ -18,7 +18,7 @@ class GoodsController extends Controller
     {
         $data = Goods::select();
        
-         dump($data);
+         //dump($data);
 
         return view('goods/index',['data'=>$data]);
     }
@@ -33,9 +33,9 @@ class GoodsController extends Controller
         
     $data = Type::select();
       $c = new Cattree($data);
-      // dump($c);
+      // //dump($c);
       $data = $c->getTree();
-      // dump($data);
+      // //dump($data);
       return view('goods/create',['data'=>$data]);
 
     }
@@ -69,8 +69,8 @@ class GoodsController extends Controller
         }
             return $this->success('添加商品成功！','/admin/goods_index');
        
-        // dump($data);
-        // dump($request->file());
+        // //dump($data);
+        // //dump($request->file());
 
     }
 
@@ -124,10 +124,10 @@ class GoodsController extends Controller
 
         
         // $file = $request->file('pic');
-        // dump($file);
+        // //dump($file);
 
         // $data = $request->post();
-        // dump($data);
+        // //dump($data);
         // die();
          try {
              Goods::update($data,['id'=>$id]);   //修改数据到数据库
@@ -146,7 +146,7 @@ class GoodsController extends Controller
     public function delete($id)
     {
         $res = Goods::find($id);
-        dump($res);
+        //dump($res);
         $data = Goods::destroy($id,$res['pic']);
         if($data){
             return $this->success('删除成功！','/admin/goods_index');

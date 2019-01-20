@@ -6,6 +6,8 @@ use think\Controller;
 use think\Request;
 use app\common\model\User;
 use think\captcha\Captcha;
+use app\common\model\Config;
+use app\common\model\Friendlink;
 
 class LoginController extends Controller
 {
@@ -16,6 +18,7 @@ class LoginController extends Controller
      */
     public function index()
     {
+        $dd = Config::select();
         return view('login/index');
     }
 
@@ -87,8 +90,9 @@ class LoginController extends Controller
 
         public function do_login(Request $req)
     {
+        $dd = Config::select();
         $data = $req->post();
-        // dump($data);
+        //// dump($data);
         $code = $data['code'];
         $captcha = new Captcha();
         if(!$captcha->check($code))
@@ -114,6 +118,7 @@ class LoginController extends Controller
      */
     public function code()
     {
+        $dd = Config::select();
         $config =    [
         // 验证码字体大小
         'fontSize'=>15,    
@@ -136,6 +141,7 @@ class LoginController extends Controller
      */
     public function logout()
     {
+        // $dd = Config::select();
         session('loginUser',null);
         
         return $this->error('正在退出中....','/home/index');

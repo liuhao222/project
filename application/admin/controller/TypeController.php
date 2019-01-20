@@ -19,7 +19,7 @@ class TypeController extends Controller
         $data = Type::select();
         $c = new Cattree($data);
         $data = $c->getTree();
-         // dump($data);
+         // //dump($data);
         return view('type/index',['data'=>$data]);
     }
 
@@ -31,12 +31,12 @@ class TypeController extends Controller
     public function create($id='')
     {
         echo $id;
-        dump($id);
+        //dump($id);
         $data = Type::select();   //获取数据
-        // dump($data);
+        // //dump($data);
         $c = new Cattree($data);
         $data = $c->getTree();    //获取分类树
-       // dump($data);
+       // //dump($data);
        return view('type/create',['data'=>$data,'id'=>$id]);
     }
 
@@ -49,7 +49,7 @@ class TypeController extends Controller
     public function save(Request $request)
     {
 
-        // dump($request->post());
+        // //dump($request->post());
         $data = $request->post();
         try {
             Type::create($data,true);
@@ -92,7 +92,7 @@ class TypeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // dump($request->post());
+        // //dump($request->post());
         $data = $request->post();
         try {
              Type::update($data,['id'=>$id]);   //修改数据到数据库

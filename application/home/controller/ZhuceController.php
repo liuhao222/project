@@ -5,7 +5,8 @@ namespace app\home\controller;
 use think\Controller;
 use think\Request;
 use app\common\model\User;
-
+use app\common\model\Config;
+use app\common\model\Friendlink;
 class ZhuceController extends Controller
 {
     /**
@@ -15,6 +16,8 @@ class ZhuceController extends Controller
      */
     public function index()
     {
+        $dd = Config::select();
+        $f = Friendlink::select();
         return view('zhuce/index');
     }
 
@@ -37,8 +40,9 @@ class ZhuceController extends Controller
     public function save(Request $request)
     {
 
+    $dd = Config::select();
         $data=$request->post();
-        dump($data);
+       // dump($data);
             if(empty($data['uname'])){
                  return $this->error('用户名不能为空');
                }

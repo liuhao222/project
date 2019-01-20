@@ -6,7 +6,10 @@ use think\Controller;
 use think\Request;
 use app\common\model\Goods;
 use app\common\model\Type;
+use app\common\model\Config;
+use app\common\model\Friendlink;
 use app\tools\Cattree;
+use  \think\Db;
 class HomeController extends Controller
 {
     /**
@@ -16,23 +19,36 @@ class HomeController extends Controller
      */
     public function index()
     {
-         $a = Goods::select();
-         
-         $data = Type::select();
 
-        // $sql=Db::field('data_goods.type_id,data_type.id')//截取表s的name列 和表a的全部
-        // ->table(['data_goods','data_type'])
-        // ->where('data_goods.type_id=data_type.id')//查询条件语句
-        // ->select();
-        // dump($sql);
-     
-    // Db::table('data_goods','data_type')->where('status',1)->select();
-        
-        
-        dump($a);
-        dump($data);
-        return view('home/index',['data'=>$data,'a'=>$a]);
+            $f = Friendlink::select();
+           // dump($f);
+            $dd = Config::select();
+            //// dump($dd);
+            if($dd['0']['status']==1){
+                 //查询商品表
+             $a = Goods::select();
+              //查询分类表
+             $data = Type::select();
+             $c = new Cattree($data);
+             
+              
+             // $r = Type::where(['pid'=>'id'])->select();
+            // // dump($a);
+            //// dump($data);
+            //// dump($res);
+            //// dump($r);
+           
+            $res = DB::table('data_goods')->alias('a')
+            ->join('data_type t','a.type_id=t.id')
+            // ->field('a.type_id,i.id')
+            ->select();
+            //// dump($res);
 
+            return view('home/index',['data'=>$data,'a'=>$a,'res'=>$res,'dd'=>$dd,'f'=>$f]);
+
+        }
+            return view('error/index');
+       
     }
     
     /**

@@ -5,6 +5,8 @@ namespace app\home\controller;
 use think\Controller;
 use think\Request;
 use app\common\model\Goods;
+use app\common\model\Config;
+use app\common\model\Friendlink;
 class GoodsController extends Controller
 {
     /**
@@ -14,8 +16,10 @@ class GoodsController extends Controller
      */
     public function index()
     {
+        $dd = Config::select();
         $data = Goods::select();
-        return view('goods/index',['data'=>$data]);
+        $f = Friendlink::select();
+        return view('goods/index',['data'=>$data,'dd'=>$dd,'f'=>$f]);
     }
 
      /**
@@ -25,10 +29,14 @@ class GoodsController extends Controller
      */
     public function list($id)
     {
-
+        $dd = Config::select();
         $data = Goods::find($id);
-        dump($data);
-        return view('goods/list',['data'=>$data]);
+         $f = Friendlink::select();
+        //dump($data);
+          $session['id'] = session('users.uid');
+          //dump($session);
+
+        return view('goods/list',['data'=>$data,'session'=>$session,'dd'=>$dd,'f'=>$f]);
     }
 
     /**

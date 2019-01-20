@@ -17,7 +17,7 @@ class FriendlinkController extends Controller
     {
         $data = Friendlink::select();
        
-         // dump($data);
+         // //dump($data);
 
         return view('friendlink/index',['data'=>$data]);
     }
@@ -42,9 +42,9 @@ class FriendlinkController extends Controller
     public function save(Request $request)
     {
          $data = $request->post();
-         // dump($data);
+         // //dump($data);
         $file = $request->file('friendlinkpic');
-        // dump($file);
+        // //dump($file);
         $info = $file->move('friendlinkpic');
         $filePath = $info->getSaveName();
         // echo $filePath.'----------';
@@ -57,7 +57,7 @@ class FriendlinkController extends Controller
         //将图片裁剪为300x300并保存为crop.png
         $image->thumb(150, 150)->save('friendlinkpic/'.$newName);
         $data['friendlinkpic'] = $newName;
-        // dump($data);
+        // //dump($data);
         // die();
         try {
              Friendlink::create($data,true);
@@ -88,7 +88,7 @@ class FriendlinkController extends Controller
     public function edit($id)
     {
          $data = Friendlink::find($id);
-         // dump($data);
+         // //dump($data);
         return view('friendlink/edit',['data'=>$data]);
     }
 
@@ -119,10 +119,10 @@ class FriendlinkController extends Controller
 
         
         // $file = $request->file('pic');
-        // dump($file);
+        // //dump($file);
 
         // $data = $request->post();
-        // dump($data);
+        // //dump($data);
         // die();
          try {
              Friendlink::update($data,['id'=>$id]);   //修改数据到数据库
@@ -141,7 +141,7 @@ class FriendlinkController extends Controller
     public function delete($id)
     {
         $res = Friendlink::find($id);
-        // dump($res);
+        // //dump($res);
         $data = Friendlink::destroy($id,$res['friendlinkpic']);
         if($data){
             return $this->success('删除成功！','/admin/friendlink_index');
